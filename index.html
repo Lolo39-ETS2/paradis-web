@@ -1,248 +1,407 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nouvel onglet - Paradis Search</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <style>
-        *{
-            margin:0;
-            padding:0;
-            box-sizing:border-box;
-            font-family:Segoe UI, Arial, sans-serif;
-        }
+<title>Nouvel onglet - Paradis Français</title>
 
-        body{
-            min-height:100vh;
-            background-image:url("https://images.unsplash.com/photo-1506744038136-46273834b3fb");
-            background-size:cover;
-            background-position:center;
-            color:white;
+<style>
 
-            display:flex;
-            flex-direction:column;
-            align-items:center;
-        }
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: "Segoe UI", sans-serif;
+}
 
-        body::before{
-            content:"";
-            position:fixed;
-            inset:0;
-            background:rgba(0,0,0,0.35);
-            backdrop-filter:blur(4px);
-            z-index:-1;
-        }
+body{
+    min-height:100vh;
+    color:white;
+    overflow-x:hidden;
 
-        .header{
-            width:100%;
-            display:flex;
-            justify-content:flex-end;
-            padding:20px;
-            font-size:14px;
-        }
+    background-image:url("background.jpg");
+    background-size:cover;
+    background-position:center;
+    background-attachment:fixed;
+}
 
-        .clock{
-            font-size:60px;
-            font-weight:300;
-            margin-top:60px;
-        }
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.15);
+    z-index:-1;
+}
 
-        .date{
-            font-size:20px;
-            opacity:0.9;
-            margin-bottom:50px;
-        }
+.header{
+    display:flex;
+    justify-content:space-between;
+    padding:30px 50px;
+}
 
-        .logo{
-            font-size:52px;
-            font-weight:600;
-            margin-bottom:30px;
-        }
+.brand{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
 
-        .search-container{
-            width:min(700px,90%);
-            position:relative;
-        }
+.logo{
+    width:55px;
+    height:55px;
+    border-radius:50%;
+    background:rgba(255,255,255,0.15);
+    backdrop-filter:blur(15px);
 
-        .search-bar{
-            width:100%;
-            padding:18px 25px;
-            border:none;
-            border-radius:40px;
-            font-size:20px;
-            outline:none;
-            background:rgba(255,255,255,0.9);
-            color:#222;
-        }
+    display:flex;
+    justify-content:center;
+    align-items:center;
 
-        .shortcuts{
-            margin-top:40px;
-            display:grid;
-            grid-template-columns:repeat(4,1fr);
-            gap:20px;
-        }
+    font-size:30px;
+}
 
-        .shortcut{
-            width:120px;
-            height:120px;
-            border-radius:20px;
-            background:rgba(255,255,255,0.15);
-            backdrop-filter:blur(10px);
+.brand-text h1{
+    font-size:34px;
+    font-weight:600;
+}
 
-            display:flex;
-            flex-direction:column;
-            justify-content:center;
-            align-items:center;
+.brand-text p{
+    opacity:0.9;
+}
 
-            cursor:pointer;
-            transition:0.2s;
-            text-decoration:none;
-            color:white;
-        }
+.weather{
+    text-align:right;
+    backdrop-filter:blur(20px);
+    background:rgba(255,255,255,0.1);
+    padding:15px 25px;
+    border-radius:20px;
+}
 
-        .shortcut:hover{
-            transform:translateY(-5px);
-            background:rgba(255,255,255,0.25);
-        }
+.weather-temp{
+    font-size:34px;
+}
 
-        .icon{
-            font-size:36px;
-            margin-bottom:10px;
-        }
+.hero{
+    text-align:center;
+    margin-top:80px;
+}
 
-        .news-section{
-            width:min(1200px,95%);
-            margin-top:70px;
-            margin-bottom:50px;
-        }
+.hero h1{
+    font-size:60px;
+    font-weight:300;
+}
 
-        .news-title{
-            font-size:28px;
-            margin-bottom:25px;
-        }
+.hero p{
+    font-size:26px;
+    margin-top:10px;
+    opacity:0.9;
+}
 
-        .news-grid{
-            display:grid;
-            grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-            gap:25px;
-        }
+.search{
+    margin:40px auto;
+    width:min(900px,90%);
+}
 
-        .news-card{
-            height:220px;
-            background:rgba(255,255,255,0.12);
-            backdrop-filter:blur(12px);
-            border-radius:20px;
-            padding:20px;
-        }
+.search input{
+    width:100%;
+    border:none;
+    outline:none;
+    border-radius:40px;
+    padding:22px 35px;
 
-        .placeholder{
-            opacity:0.7;
-            margin-top:15px;
-        }
-    </style>
+    font-size:22px;
+
+    background:rgba(255,255,255,0.92);
+
+    box-shadow:0 10px 40px rgba(0,0,0,0.2);
+}
+
+.shortcuts{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:25px;
+    margin-top:30px;
+}
+
+.shortcut{
+    width:120px;
+    height:120px;
+
+    background:rgba(255,255,255,0.15);
+    backdrop-filter:blur(20px);
+
+    border-radius:25px;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+    text-decoration:none;
+    color:white;
+
+    transition:0.2s;
+}
+
+.shortcut:hover{
+    transform:translateY(-6px);
+    background:rgba(255,255,255,0.25);
+}
+
+.shortcut-icon{
+    font-size:42px;
+    margin-bottom:10px;
+}
+
+.news-container{
+    width:min(1400px,95%);
+    margin:80px auto;
+}
+
+.news-header{
+    display:flex;
+    gap:30px;
+    margin-bottom:25px;
+    padding-left:10px;
+}
+
+.news-header div{
+    cursor:pointer;
+    opacity:0.8;
+}
+
+.news-header .active{
+    opacity:1;
+    font-weight:bold;
+}
+
+.news-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:25px;
+}
+
+.news-card{
+    overflow:hidden;
+
+    border-radius:25px;
+
+    background:rgba(20,20,20,0.5);
+    backdrop-filter:blur(20px);
+
+    transition:0.2s;
+}
+
+.news-card:hover{
+    transform:translateY(-5px);
+}
+
+.news-card img{
+    width:100%;
+    height:180px;
+    object-fit:cover;
+}
+
+.news-content{
+    padding:20px;
+}
+
+.news-category{
+    font-size:14px;
+    opacity:0.8;
+    margin-bottom:8px;
+}
+
+.news-title{
+    font-size:24px;
+    margin-bottom:10px;
+}
+
+.news-meta{
+    opacity:0.7;
+}
+
+</style>
 </head>
 
 <body>
 
 <div class="header">
-    Réseau National PF
+
+    <div class="brand">
+
+        <div class="logo">
+            🇫🇷
+        </div>
+
+        <div class="brand-text">
+            <h1>Paradis Français</h1>
+            <p>Un pays, des territoires, un avenir.</p>
+        </div>
+
+    </div>
+
+    <div class="weather">
+        <div class="weather-temp">☀️ 18°C</div>
+        <div>Montfleury</div>
+    </div>
+
 </div>
 
-<div class="clock" id="clock"></div>
-<div class="date" id="date"></div>
+<div class="hero">
 
-<div class="logo">
-    🔎 Paradis Search
-</div>
+    <h1>Bonjour !</h1>
 
-<div class="search-container">
-    <input class="search-bar"
-           type="text"
-           placeholder="Rechercher sur le réseau Paradis Français">
+    <p>
+        Que souhaitez-vous découvrir aujourd'hui ?
+    </p>
+
+    <div class="search">
+        <input
+            type="text"
+            placeholder="Rechercher sur le web ou dans Paradis Français">
+    </div>
+
 </div>
 
 <div class="shortcuts">
 
+    <a class="shortcut" href="pfinfo.html">
+        <div class="shortcut-icon">📰</div>
+        PF Info
+    </a>
+
     <a class="shortcut" href="meteo.html">
-        <div class="icon">☀️</div>
-        <div>Météo PF</div>
+        <div class="shortcut-icon">☀️</div>
+        Météo PF
     </a>
 
     <a class="shortcut" href="transports.html">
-        <div class="icon">🚗</div>
-        <div>Transports</div>
+        <div class="shortcut-icon">🛣️</div>
+        Transports
     </a>
 
-    <a class="shortcut" href="pfinfo.html">
-        <div class="icon">📰</div>
-        <div>PF Info</div>
+    <a class="shortcut" href="services.html">
+        <div class="shortcut-icon">🏛️</div>
+        Services publics
     </a>
 
-    <a class="shortcut" href="#">
-        <div class="icon">🏛️</div>
-        <div>Gouvernement</div>
+    <a class="shortcut" href="carte.html">
+        <div class="shortcut-icon">🗺️</div>
+        Carte du pays
+    </a>
+
+    <a class="shortcut" href="tourisme.html">
+        <div class="shortcut-icon">🏔️</div>
+        Tourisme
     </a>
 
 </div>
 
-<div class="news-section">
+<div class="news-container">
 
-    <div class="news-title">
-        Actualités recommandées
+    <div class="news-header">
+        <div class="active">Mon fil d'actualité</div>
+        <div>Actualités nationales</div>
+        <div>Régions</div>
+        <div>Économie</div>
+        <div>Transports</div>
+        <div>Culture</div>
+        <div>Sport</div>
     </div>
 
     <div class="news-grid">
 
         <div class="news-card">
-            <h2>Articles bientôt disponibles</h2>
-            <div class="placeholder">
-                Les actualités nationales apparaîtront ici automatiquement.
+
+            <img src="img/rn57.jpg">
+
+            <div class="news-content">
+                <div class="news-category">
+                    Transports
+                </div>
+
+                <div class="news-title">
+                    Travaux sur la RN57 : circulation perturbée jusqu'en octobre
+                </div>
+
+                <div class="news-meta">
+                    PF Info • Il y a 2 h
+                </div>
             </div>
+
         </div>
 
         <div class="news-card">
-            <h2>Travaux routiers</h2>
-            <div class="placeholder">
-                Informations trafic et travaux à venir.
+
+            <img src="img/economie.jpg">
+
+            <div class="news-content">
+
+                <div class="news-category">
+                    Économie
+                </div>
+
+                <div class="news-title">
+                    La croissance du Paradis Français dépasse les prévisions
+                </div>
+
+                <div class="news-meta">
+                    PF Info • Il y a 4 h
+                </div>
+
             </div>
+
         </div>
 
         <div class="news-card">
-            <h2>Économie</h2>
-            <div class="placeholder">
-                Actualités des entreprises du pays.
+
+            <img src="img/foret.jpg">
+
+            <div class="news-content">
+
+                <div class="news-category">
+                    Société
+                </div>
+
+                <div class="news-title">
+                    Nouvelle campagne pour la préservation des forêts
+                </div>
+
+                <div class="news-meta">
+                    PF Info • Il y a 5 h
+                </div>
+
             </div>
+
+        </div>
+
+        <div class="news-card">
+
+            <img src="img/tourisme.jpg">
+
+            <div class="news-content">
+
+                <div class="news-category">
+                    Tourisme
+                </div>
+
+                <div class="news-title">
+                    Découvrez les lacs du Jura, trésors naturels du pays
+                </div>
+
+                <div class="news-meta">
+                    PF Info • Il y a 6 h
+                </div>
+
+            </div>
+
         </div>
 
     </div>
 
 </div>
-
-<script>
-
-function updateClock(){
-    const now = new Date();
-
-    document.getElementById("clock").innerHTML =
-        now.toLocaleTimeString('fr-FR',{
-            hour:'2-digit',
-            minute:'2-digit'
-        });
-
-    document.getElementById("date").innerHTML =
-        now.toLocaleDateString('fr-FR',{
-            weekday:'long',
-            day:'numeric',
-            month:'long',
-            year:'numeric'
-        });
-}
-
-updateClock();
-setInterval(updateClock,1000);
-
-</script>
 
 </body>
 </html>

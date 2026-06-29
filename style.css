@@ -1,0 +1,115 @@
+body{
+    margin:0;
+    font-family:Segoe UI;
+    color:white;
+
+    background-image:url("img/background.jpg");
+    background-size:cover;
+    background-position:center;
+    background-attachment:fixed;
+}
+
+header{
+    display:flex;
+    justify-content:space-between;
+    padding:30px 50px;
+}
+
+.brand{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.logo{
+    font-size:50px;
+}
+
+.hero{
+    text-align:center;
+    margin-top:60px;
+}
+
+.hero h2{
+    font-size:60px;
+}
+
+.hero p{
+    font-size:24px;
+}
+
+.search{
+    width:800px;
+    max-width:90%;
+    margin-top:30px;
+    padding:20px;
+    border:none;
+    border-radius:40px;
+    font-size:20px;
+}
+
+.shortcuts{
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    margin-top:40px;
+    flex-wrap:wrap;
+}
+
+.shortcuts a{
+    text-decoration:none;
+    color:white;
+
+    padding:20px;
+    border-radius:20px;
+
+    background:rgba(255,255,255,0.15);
+    backdrop-filter:blur(10px);
+}
+
+.categories{
+    margin:60px;
+    display:flex;
+    gap:20px;
+    justify-content:center;
+}
+
+.categories button{
+    border:none;
+    background:none;
+    color:white;
+    cursor:pointer;
+    font-size:18px;
+}
+
+.articles{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:20px;
+
+    width:90%;
+    margin:auto;
+}
+
+.card{
+    background:rgba(0,0,0,0.45);
+    backdrop-filter:blur(10px);
+
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.card img{
+    width:100%;
+    height:200px;
+    object-fit:cover;
+}
+
+.card-content{
+    padding:20px;
+}
+
+.card a{
+    color:white;
+    text-decoration:none;
+}
